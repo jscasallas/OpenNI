@@ -71,11 +71,11 @@ if [ "$install" = yes ] && [ "$uninstall" = yes ]; then
 	exit 1
 fi
 
-INSTALL_LIB=$rootfs/usr/lib
-INSTALL_BIN=$rootfs/usr/bin
-INSTALL_INC=$rootfs/usr/include/ni
-INSTALL_VAR=$rootfs/var/lib/ni
-INSTALL_JAR=$rootfs/usr/share/java
+INSTALL_LIB=$rootfs/usr/local/Cellar/openni/1.5.2.23/lib
+INSTALL_BIN=$rootfs/usr/local/Cellar/openni/1.5.2.23/bin
+INSTALL_INC=$rootfs/usr/local/Cellar/openni/1.5.2.23/include/ni
+INSTALL_VAR=$rootfs/usr/local/Cellar/openni/1.5.2.23/var/lib/ni
+INSTALL_JAR=$rootfs/usr/local/Cellar/openni/1.5.2.23/share/java
 
 # make all calls into OpenNI run in this filesystem
 export OPEN_NI_INSTALL_PATH=$rootfs
@@ -88,11 +88,13 @@ if [ "$install" = yes ]; then
 	
 	# copy libraries
 	printf "copying shared libraries..."
+    mkdir -p $INSTALL_LIB
 	cp $LIB_FILES $INSTALL_LIB
 	printf "OK\n"
 
 	# utilities
 	printf "copying executables..."
+    mkdir -p $INSTALL_BIN
 	cp $BIN_FILES $INSTALL_BIN
 	printf "OK\n"
 
